@@ -18,6 +18,22 @@ Restart Codex, then ask it to use `flickr-album-imagegen` with:
 
 You may also omit the long prompt and select a built-in preset: `editorial-handdrawn`, `capsule-figurine`, `riso-editorial`, `rubber-stamp-journal`, `pastel-crayon`, `korean-pink-editorial`, or `landmark-blueprint`. Without a prompt, the default is `editorial-handdrawn`.
 
+## Built-in style presets
+
+Replace `<album-url>` with a public Flickr album or Google Photos share link.
+
+| Preset | Look | Copyable example |
+|---|---|---|
+| `editorial-handdrawn` | 3:4 photo-over-minimal-handmade-illustration editorial poster | `Use flickr-album-imagegen with <album-url>. Process the first 10 photos with editorial-handdrawn.` |
+| `capsule-figurine` | Recognizable 3D chibi collectible fully sealed in a clear pill capsule | `Use flickr-album-imagegen with <album-url>. Process photos 11–20 with capsule-figurine.` |
+| `riso-editorial` | 3:4 photo and RISO stencil-print art-publication poster | `Use flickr-album-imagegen with <album-url>. Process the first 5 photos with riso-editorial.` |
+| `rubber-stamp-journal` | 4:3 original photo plus handmade rubber-stamp travel journal | `Use flickr-album-imagegen with <album-url>. Process photos 21–30 with rubber-stamp-journal.` |
+| `pastel-crayon` | 3:4 photo plus bright-paper chalk/crayon doodle | `Use flickr-album-imagegen with <album-url>. Process the first 10 photos with pastel-crayon.` |
+| `korean-pink-editorial` | 16:9 pink Korean-idol fashion magazine collage | `Use flickr-album-imagegen with <album-url>. Process the first 3 portraits with korean-pink-editorial.` |
+| `landmark-blueprint` | Real landmark photograph with architectural blueprint annotations | `Use flickr-album-imagegen with <album-url>. Process the first 5 architecture photos with landmark-blueprint.` |
+
+Extra directions can be appended to any preset, for example: `Use rubber-stamp-journal, but omit all typography and use brighter ivory paper.` A fully custom prompt is still supported.
+
 ## Examples
 
 ### Google Photos shared album
@@ -80,9 +96,37 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 | `korean-pink-editorial` | 粉紅韓系、韓系粉紅雜誌 |
 | `landmark-blueprint` | 知名建築物分析、建築藍圖 |
 
-例如：
+### 每種風格的複製範例
 
-> 請使用 `flickr-album-imagegen` 處理這個相簿的前十張，套用「3D膠囊公仔」風格。
+將下列 `<相簿網址>` 換成公開 Flickr 相簿或 Google 相簿共享連結即可：
+
+#### 1. 水彩上下分隔／極簡手繪
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `editorial-handdrawn`（水彩風格上下分隔）。每張照片獨立輸出。
+
+#### 2. 3D 膠囊公仔
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的第 11～20 張，套用 `capsule-figurine`（3D膠囊公仔）。每張照片獨立輸出。
+
+#### 3. RISO 孔版印刷藝術風
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前五張，套用 `riso-editorial`（RISO藝術風）。每張照片獨立輸出。
+
+#### 4. 橡膠印章旅行明信片
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的第 21～30 張，套用 `rubber-stamp-journal`（旅行明信片）。每張照片獨立輸出。
+
+#### 5. 顆粒粉筆／粉彩蠟筆
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `pastel-crayon`（顆粒粉筆）。每張照片獨立輸出。
+
+#### 6. 粉紅韓系時尚雜誌
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前三張人物照，套用 `korean-pink-editorial`（粉紅韓系）。每張照片獨立輸出。
+
+#### 7. 知名建築物藍圖分析
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前五張建築照片，套用 `landmark-blueprint`（知名建築物分析）。每張照片獨立輸出；沒有可靠資料時不要虛構尺寸或工程數據。
 
 如果完全沒有指定 prompt 或預設風格，會自動使用 `editorial-handdrawn`。你也可以在預設風格後面追加要求，例如「不要文字」或「背景改成奶油白」。
 
