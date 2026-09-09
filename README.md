@@ -16,6 +16,8 @@ Restart Codex, then ask it to use `flickr-album-imagegen` with:
 - a page or photo range;
 - an image transformation prompt.
 
+You may also omit the long prompt and select a built-in preset: `editorial-handdrawn`, `capsule-figurine`, `riso-editorial`, `rubber-stamp-journal`, `pastel-crayon`, `korean-pink-editorial`, or `landmark-blueprint`. Without a prompt, the default is `editorial-handdrawn`.
+
 ## Examples
 
 ### Google Photos shared album
@@ -65,6 +67,24 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 - 公開 Flickr 相簿網址或 Google 相簿共享網址；
 - 要處理的頁面或照片範圍；
 - 想套用的影像生成提示詞。
+
+也可以不貼長篇提示詞，直接指定下列內建風格：
+
+| 內建名稱 | 可使用的中文名稱 |
+|---|---|
+| `editorial-handdrawn` | 水彩風格上下分隔、風景生圖、可愛水彩、極簡手繪 |
+| `capsule-figurine` | 3D膠囊公仔、膠囊公仔 |
+| `riso-editorial` | 藝術風、RISO藝術風、孔版印刷 |
+| `rubber-stamp-journal` | 旅行明信片、明信片、橡膠印章旅行記錄 |
+| `pastel-crayon` | 顆粒粉筆、蠟筆風格、粉彩蠟筆 |
+| `korean-pink-editorial` | 粉紅韓系、韓系粉紅雜誌 |
+| `landmark-blueprint` | 知名建築物分析、建築藍圖 |
+
+例如：
+
+> 請使用 `flickr-album-imagegen` 處理這個相簿的前十張，套用「3D膠囊公仔」風格。
+
+如果完全沒有指定 prompt 或預設風格，會自動使用 `editorial-handdrawn`。你也可以在預設風格後面追加要求，例如「不要文字」或「背景改成奶油白」。
 
 ## 使用範例
 
