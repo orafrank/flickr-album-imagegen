@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flickr 相簿批次生圖"
+  short_description: "下載 Flickr 相簿照片並依指定 Prompt 批次生成獨立圖片"
+  default_prompt: "請提供 Flickr 相簿網址、照片範圍與影像風格 Prompt。"
