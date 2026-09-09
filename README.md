@@ -16,11 +16,25 @@ Restart Codex, then ask it to use `flickr-album-imagegen` with:
 - a page or photo range;
 - an image transformation prompt.
 
-Example:
+## Examples
 
-> Use flickr-album-imagegen to process the first 10 photos from this Flickr album with the following poster prompt: ...
+### Google Photos shared album
 
-> Use flickr-album-imagegen to process the first 10 photos from this Google Photos share link with the following poster prompt: ...
+Paste a public Google Photos **share link** and describe the range and visual treatment:
+
+> Use `flickr-album-imagegen` with https://photos.app.goo.gl/j1eSpZZYzcnWEcDS8. Process photos 1–10 in album order. Turn every photo into a separate 4:3 rubber-stamp travel-journal poster: preserve the original photo on the left 58%, and use aged off-white paper, a small hand-carved stamp illustration, and minimal 2018 journal typography on the right 42%. Never combine photos.
+
+![Google Photos example: rubber-stamp journal poster](examples/google-photos-rubber-stamp.png)
+
+### Flickr album
+
+Paste a public Flickr album URL; `/page2` and `/with/{photo-id}` URLs are supported too:
+
+> Use `flickr-album-imagegen` with https://www.flickr.com/photos/orafrank/albums/72177720311658577/. Process photos 40–49 in album order. Turn every photo into a separate 4:3 rubber-stamp travel-journal poster: preserve the original photo on the left 58%, and use aged off-white paper, a small hand-carved stamp illustration, and minimal journal typography on the right 42%. Never combine photos.
+
+![Flickr example: rubber-stamp journal poster](examples/flickr-rubber-stamp.png)
+
+You can replace the sample art direction with any prompt you like. The skill keeps the requested album order and processes each source image independently.
 
 ## Notes
 
