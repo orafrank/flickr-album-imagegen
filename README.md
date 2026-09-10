@@ -16,7 +16,7 @@ Restart Codex, then ask it to use `flickr-album-imagegen` with:
 - a page or photo range;
 - an image transformation prompt.
 
-You may also omit the long prompt and select a built-in preset: `editorial-handdrawn`, `capsule-figurine`, `riso-editorial`, `rubber-stamp-journal`, `pastel-crayon`, `korean-pink-editorial`, or `landmark-blueprint`. Without a prompt, the default is `editorial-handdrawn`.
+You may also omit the long prompt and select a built-in preset: `editorial-handdrawn`, `capsule-figurine`, `riso-editorial`, `rubber-stamp-journal`, `pastel-crayon`, `korean-pink-editorial`, `landmark-blueprint`, or `japanese-editorial-memory`. Without a prompt, the default is `editorial-handdrawn`.
 
 ## Built-in style presets
 
@@ -31,8 +31,15 @@ Replace `<album-url>` with a public Flickr album or Google Photos share link.
 | `pastel-crayon` | 3:4 photo plus bright-paper chalk/crayon doodle | `Use flickr-album-imagegen with <album-url>. Process the first 10 photos with pastel-crayon.` |
 | `korean-pink-editorial` | 16:9 pink Korean-idol fashion magazine collage | `Use flickr-album-imagegen with <album-url>. Process the first 3 portraits with korean-pink-editorial.` |
 | `landmark-blueprint` | Real landmark photograph with architectural blueprint annotations | `Use flickr-album-imagegen with <album-url>. Process the first 5 architecture photos with landmark-blueprint.` |
+| `japanese-editorial-memory` | 3:4 contemporary Japanese art-book poster with a poetic handwritten memory phrase | `Use flickr-album-imagegen with <album-url>. Process the first 10 photos with japanese-editorial-memory.` |
 
 Extra directions can be appended to any preset, for example: `Use rubber-stamp-journal, but omit all typography and use brighter ivory paper.` A fully custom prompt is still supported.
+
+### Japanese Editorial Memory Poster example
+
+> Use `flickr-album-imagegen` with `<album-url>`. Process the first 10 photos with `japanese-editorial-memory`. Create one independent poster per photo and do not invent locations or dates.
+
+![Japanese Editorial Memory Poster example](examples/japanese-editorial-memory.png)
 
 ## Examples
 
@@ -95,6 +102,7 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 | `pastel-crayon` | 顆粒粉筆、蠟筆風格、粉彩蠟筆 |
 | `korean-pink-editorial` | 粉紅韓系、韓系粉紅雜誌 |
 | `landmark-blueprint` | 知名建築物分析、建築藍圖 |
+| `japanese-editorial-memory` | 日系輕編輯．情緒記憶海報、日系情緒海報 |
 
 ### 每種風格的複製範例
 
@@ -127,6 +135,12 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 #### 7. 知名建築物藍圖分析
 
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前五張建築照片，套用 `landmark-blueprint`（知名建築物分析）。每張照片獨立輸出；沒有可靠資料時不要虛構尺寸或工程數據。
+
+#### 8. 日系輕編輯．情緒記憶海報
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `japanese-editorial-memory`（日系輕編輯．情緒記憶海報）。每張照片獨立輸出，依照片情緒自動生成一句簡短日文；不要虛構地點或日期。
+
+![日系輕編輯．情緒記憶海報範例](examples/japanese-editorial-memory.png)
 
 如果完全沒有指定 prompt 或預設風格，會自動使用 `editorial-handdrawn`。你也可以在預設風格後面追加要求，例如「不要文字」或「背景改成奶油白」。
 

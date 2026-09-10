@@ -13,6 +13,7 @@ Use a preset when the user names it instead of supplying a full prompt. Preserve
 | `pastel-crayon` | 顆粒粉筆、蠟筆風格、粉彩蠟筆 | Photo above, playful chalk/crayon drawing below |
 | `korean-pink-editorial` | 粉紅韓系、韓系粉紅雜誌 | Fashion/editorial portraits |
 | `landmark-blueprint` | 知名建築物分析、建築藍圖 | Landmark and architecture infographic |
+| `japanese-editorial-memory` | 日系輕編輯．情緒記憶海報、日系情緒海報 | Contemporary Japanese editorial memory poster |
 
 ## `editorial-handdrawn`
 
@@ -41,3 +42,9 @@ Use the person in the single referenced photo as the sole identity and facial re
 ## `landmark-blueprint`
 
 Create an educational architectural infographic from the single referenced landmark photograph. Keep the real environment visible and preserve the structure faithfully. Overlay a blueprint-style system of white chalk-like technical sketches: structural callouts, load-flow arrows, cross-sections, floor-plan fragments and notable architectural or engineering features. Put the verified landmark name in a hand-drawn title box. Only include measurements, quantities, dates, materials and structural claims when they are provided by the user or verified from reliable source material; otherwise use non-numeric conceptual annotations and do not fabricate data. The result should feel like an architect's annotated field photograph, not a decorative sci-fi HUD.
+
+## `japanese-editorial-memory`
+
+Create one independent high-resolution 3:4 vertical Japanese Editorial Memory Poster from the single referenced photograph. Carefully identify its most memorable subject, symbolic motif, atmosphere, season, time and emotion. Do not merely convert the whole photo into an illustration. Recompose it as a contemporary art-book, independent design-magazine or gallery-shop print. Preserve the main subject's defining form, color and visual identity, but use bold asymmetric placement, large intentional negative space, slight off-center positioning and expressive cropping to create a new editorial viewpoint.
+
+Keep selected areas photographically realistic and blend other areas with colored pencil, dry pastel, ink and tactile paper texture. Build the background from three to five restrained colors sampled from the source, using large color planes, translucent shapes, fine lines, torn-paper-like layers and only a few small hand-drawn motifs derived from the scene. Generate one short, quiet Japanese memory phrase suited to the image—poetic rather than descriptive—and place it once, small, in generous negative space using natural thin pencil or fine felt-tip handwritten Japanese. Optional English typography may be added only when its facts are verified. Never invent a place, season, date, species or other factual label. Bright, spacious, quiet and contemporary; premium print texture and refined editorial balance. Avoid retro tourism posters, generic templates, crowded collage, excessive decoration, polished digital fonts, cartoons, glossy 3D and invented information.
