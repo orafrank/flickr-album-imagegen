@@ -1,6 +1,6 @@
 # Flickr & Google Photos Album ImageGen
 
-A personal Codex skill that downloads an ordered range of photos from a public Flickr album or Google Photos shared album and transforms each photo independently with a user-provided image-generation prompt.
+A personal Codex skill that downloads an ordered range of photos from a public Flickr album, a user-provided Flickr Guest Pass, or a Google Photos shared album and transforms each photo independently with a user-provided image-generation prompt.
 
 ## Install
 
@@ -12,7 +12,7 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 
 Restart Codex, then ask it to use `flickr-album-imagegen` with:
 
-- a public Flickr album URL or Google Photos share URL;
+- a public Flickr album URL, Flickr Guest Pass URL, or Google Photos share URL;
 - a page or photo range;
 - an image transformation prompt.
 
@@ -35,7 +35,18 @@ Replace `<album-url>` with a public Flickr album or Google Photos share link.
 
 Extra directions can be appended to any preset, for example: `Use rubber-stamp-journal, but omit all typography and use brighter ivory paper.` A fully custom prompt is still supported.
 
-### Japanese Editorial Memory Poster example
+### Style gallery
+
+Each image below is an actual single-photo output from its named preset.
+
+| Style | Example | Style | Example |
+|---|---|---|---|
+| `editorial-handdrawn`<br>Photo + minimal handmade illustration | <img src="examples/styles/editorial-handdrawn.jpg" alt="editorial-handdrawn example" width="300"> | `capsule-figurine`<br>Clear capsule collectible | <img src="examples/styles/capsule-figurine.jpg" alt="capsule-figurine example" width="300"> |
+| `riso-editorial`<br>RISO editorial print | <img src="examples/styles/riso-editorial.jpg" alt="riso-editorial example" width="300"> | `rubber-stamp-journal`<br>Rubber-stamp travel journal | <img src="examples/styles/rubber-stamp-journal.jpg" alt="rubber-stamp-journal example" width="300"> |
+| `pastel-crayon`<br>Pastel crayon poster | <img src="examples/styles/pastel-crayon.jpg" alt="pastel-crayon example" width="300"> | `korean-pink-editorial`<br>Pink Korean editorial collage | <img src="examples/styles/korean-pink-editorial.jpg" alt="korean-pink-editorial example" width="300"> |
+| `landmark-blueprint`<br>Architectural field blueprint | <img src="examples/styles/landmark-blueprint.jpg" alt="landmark-blueprint example" width="300"> | `japanese-editorial-memory`<br>Japanese editorial memory poster | <img src="examples/styles/japanese-editorial-memory.jpg" alt="japanese-editorial-memory example" width="300"> |
+
+### Japanese Editorial Memory Poster prompt example
 
 > Use `flickr-album-imagegen` with `<album-url>`. Process the first 10 photos with `japanese-editorial-memory`. Create one independent poster per photo and do not invent locations or dates.
 
@@ -66,14 +77,14 @@ You can replace the sample art direction with any prompt you like. The skill kee
 - Each source photo is generated and saved independently.
 - Album order is scoped to the exact URL, including `/page2` and later pages.
 - Google Photos requires a generated `photos.app.goo.gl` or `/share/...` link; private `/album/...` links are not portable.
-- Private albums and access-control bypasses are not supported.
+- Flickr Guest Pass links are supported for the photos exposed by that exact link. The skill does not discover unrelated private content or bypass access controls.
 - Image generation requires an image-generation tool available in the user's Codex environment.
 
 ---
 
 # 中文說明
 
-`flickr-album-imagegen` 是一個個人 Codex Skill，可依照公開 Flickr 相簿或 Google 相簿共享連結中的順序，下載指定範圍的照片，再使用你提供的提示詞逐張生成新圖片。
+`flickr-album-imagegen` 是一個個人 Codex Skill，可依照公開 Flickr 相簿、使用者提供的 Flickr Guest Pass，或 Google 相簿共享連結中的順序，下載指定範圍的照片，再使用你提供的提示詞逐張生成新圖片。
 
 每張照片都會獨立處理與輸出，不會自動合成拼貼。
 
@@ -88,6 +99,7 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 重新啟動 Codex，接著提供：
 
 - 公開 Flickr 相簿網址或 Google 相簿共享網址；
+- 若相簿含私人照片，也可以提供 Flickr Guest Pass 分享網址；
 - 要處理的頁面或照片範圍；
 - 想套用的影像生成提示詞。
 
@@ -112,35 +124,49 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `editorial-handdrawn`（水彩風格上下分隔）。每張照片獨立輸出。
 
+![水彩上下分隔／極簡手繪範例](examples/styles/editorial-handdrawn.jpg)
+
 #### 2. 3D 膠囊公仔
 
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的第 11～20 張，套用 `capsule-figurine`（3D膠囊公仔）。每張照片獨立輸出。
+
+![3D 膠囊公仔範例](examples/styles/capsule-figurine.jpg)
 
 #### 3. RISO 孔版印刷藝術風
 
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前五張，套用 `riso-editorial`（RISO藝術風）。每張照片獨立輸出。
 
+![RISO 孔版印刷藝術風範例](examples/styles/riso-editorial.jpg)
+
 #### 4. 橡膠印章旅行明信片
 
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的第 21～30 張，套用 `rubber-stamp-journal`（旅行明信片）。每張照片獨立輸出。
+
+![橡膠印章旅行明信片範例](examples/styles/rubber-stamp-journal.jpg)
 
 #### 5. 顆粒粉筆／粉彩蠟筆
 
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `pastel-crayon`（顆粒粉筆）。每張照片獨立輸出。
 
+![顆粒粉筆／粉彩蠟筆範例](examples/styles/pastel-crayon.jpg)
+
 #### 6. 粉紅韓系時尚雜誌
 
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前三張人物照，套用 `korean-pink-editorial`（粉紅韓系）。每張照片獨立輸出。
+
+![粉紅韓系時尚雜誌範例](examples/styles/korean-pink-editorial.jpg)
 
 #### 7. 知名建築物藍圖分析
 
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前五張建築照片，套用 `landmark-blueprint`（知名建築物分析）。每張照片獨立輸出；沒有可靠資料時不要虛構尺寸或工程數據。
 
+![知名建築物藍圖分析範例](examples/styles/landmark-blueprint.jpg)
+
 #### 8. 日系輕編輯．情緒記憶海報
 
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `japanese-editorial-memory`（日系輕編輯．情緒記憶海報）。每張照片獨立輸出，依照片情緒自動生成一句簡短日文；不要虛構地點或日期。
 
-![日系輕編輯．情緒記憶海報範例](examples/japanese-editorial-memory.png)
+![日系輕編輯．情緒記憶海報範例](examples/styles/japanese-editorial-memory.jpg)
 
 如果完全沒有指定 prompt 或預設風格，會自動使用 `editorial-handdrawn`。你也可以在預設風格後面追加要求，例如「不要文字」或「背景改成奶油白」。
 
@@ -169,5 +195,5 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 - 每張來源照片都會獨立生成並儲存。
 - 照片順序以你提供的確切網址為準，包含 `/page2` 與後續頁面。
 - Google 相簿必須使用 `photos.app.goo.gl` 或 `/share/...` 形式的共享連結；私人 `/album/...` 網址無法分享給其他使用者執行。
-- 不支援私人相簿，也不會繞過存取權限。
+- 支援使用者主動提供的 Flickr Guest Pass，且只讀取該連結明確分享的照片；不會探索其他私人內容或繞過存取權限。
 - 使用者的 Codex 環境必須具備影像生成功能。

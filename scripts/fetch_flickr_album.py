@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import http.cookiejar
 import html
 import json
 import re
@@ -12,13 +13,26 @@ import urllib.request
 from pathlib import Path
 
 TOKEN_RE = re.compile(r'"(?:title|id)":"[^"]*"')
-STATIC_RE = re.compile(r'https://live\.staticflickr\.com/[^" ]+_b\.jpg')
+STATIC_RE = re.compile(r'https://live\.staticflickr\.com/[^" ]+?\.jpg')
 
 
-def fetch_text(url: str) -> str:
+def fetch_text(opener: urllib.request.OpenerDirector, url: str) -> tuple[str, str]:
     request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(request, timeout=30) as response:
-        return response.read().decode("utf-8", errors="replace")
+    with opener.open(request, timeout=30) as response:
+        return response.read().decode("utf-8", errors="replace"), response.geturl()
+
+
+def best_image_url(page_html: str, photo_id: str) -> str | None:
+    candidates = [url for url in STATIC_RE.findall(page_html) if f"/{photo_id}_" in url]
+    if not candidates:
+        return None
+    rank = {"o": 6, "k": 5, "h": 4, "b": 3, "c": 2}
+
+    def score(url: str) -> int:
+        match = re.search(r"_([okhbc])\.jpg$", url)
+        return rank.get(match.group(1), 1) if match else 1
+
+    return max(dict.fromkeys(candidates), key=score)
 
 
 def decode_value(token: str) -> str:
@@ -58,13 +72,16 @@ def main() -> int:
     if args.start < 1 or args.count < 1:
         parser.error("--start and --count must be positive")
 
-    album_match = re.search(r"/albums/(\d+)", args.url)
-    owner_match = re.search(r"/photos/([^/]+)/albums/", args.url)
+    cookie_jar = http.cookiejar.CookieJar()
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cookie_jar))
+    album_html, resolved_url = fetch_text(opener, args.url)
+    album_match = re.search(r"/(?:albums|sets)/(\d+)", resolved_url)
+    owner_match = re.search(r"/photos/([^/]+)/(?:albums|sets)/", resolved_url)
     if not album_match or not owner_match:
-        parser.error("URL does not contain a Flickr owner and album ID")
+        parser.error("URL did not resolve to a Flickr album or Guest Pass album")
     album_id = album_match.group(1)
     owner = owner_match.group(1)
-    photos = ordered_photos(fetch_text(args.url), album_id)
+    photos = ordered_photos(album_html, album_id)
     selected = photos[args.start - 1 : args.start - 1 + args.count]
     if not selected:
         print("No photos found in requested range", file=sys.stderr)
@@ -75,22 +92,23 @@ def main() -> int:
     width = max(2, len(str(args.start + len(selected) - 1)))
     for offset, (photo_id, title) in enumerate(selected):
         sequence = args.start + offset
-        photo_page = f"https://www.flickr.com/photos/{owner}/{photo_id}/"
-        image_match = STATIC_RE.search(fetch_text(photo_page))
-        if not image_match:
+        photo_page = f"https://www.flickr.com/photos/{owner}/{photo_id}/in/album-{album_id}"
+        photo_html, _ = fetch_text(opener, photo_page)
+        image_url = best_image_url(photo_html, photo_id)
+        if not image_url:
             raise RuntimeError(f"No downloadable image found for Flickr photo {photo_id}")
-        image_url = image_match.group(0)
         filename = f"{sequence:0{width}d}_{safe_title(title)}.jpg"
         local_path = args.output / filename
         request = urllib.request.Request(image_url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(request, timeout=60) as response:
+        with opener.open(request, timeout=60) as response:
             local_path.write_bytes(response.read())
         manifest.append({"sequence": sequence, "photo_id": photo_id, "title": title,
                          "photo_page": photo_page, "source_url": image_url,
                          "local_path": str(local_path.resolve())})
 
     manifest_path = args.output / "manifest.json"
-    manifest_path.write_text(json.dumps({"album_url": args.url, "album_id": album_id,
+    manifest_path.write_text(json.dumps({"album_url": resolved_url, "source_url": args.url,
+        "guest_pass": "/gp/" in args.url, "album_id": album_id,
         "requested_start": args.start, "requested_count": args.count,
         "actual_count": len(manifest), "photos": manifest},
         ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
