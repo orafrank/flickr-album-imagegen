@@ -1,6 +1,6 @@
 ---
 name: flickr-album-imagegen
-description: Download an ordered range of photos from a public Flickr album or Google Photos shared album and transform each independently with a user-provided image-generation prompt. Use for album batch image styling, poster creation, or repeated photo-to-image transformations.
+description: Download ordered photos from Flickr albums, Flickr Guest Passes, or Google Photos shared albums; transform each independently; and optionally publish confirmed outputs to Flickr or Google Photos. Use for album batch styling, poster creation, or user-approved photo publishing.
 ---
 
 # Flickr and Google Photos Album Image Generation
@@ -32,6 +32,7 @@ Turn a Flickr or Google Photos album URL plus a style prompt into separately gen
 9. Generate one independent output per source. Do not combine sources into a collage unless explicitly requested.
 10. Save outputs in a batch-specific folder. Prefix filenames with zero-padded sequence numbers and retain the sanitized source title when available.
 11. Verify output count and readability. Report the actual range and provide a clickable output-folder link.
+12. Keep outputs local unless the user explicitly chooses a publishing destination. When publishing is requested, read [references/publishing.md](references/publishing.md), prepare a non-writing upload plan, display its account, target album, file list, and privacy/sharing state, then wait for explicit confirmation of that exact plan before uploading.
 
 ## Operational rules
 
@@ -42,3 +43,4 @@ Turn a Flickr or Google Photos album URL plus a style prompt into separately gen
 - Use modest concurrency, normally two generations at a time, so failures remain attributable.
 - Retry a failed generation once. Continue other photos and report anything still missing.
 - Never overwrite unrelated files. Put every page and range in its own directory.
+- Generation permission does not authorize publishing. Never upload implicitly, and never place OAuth credentials in plans, repositories, command arguments, or user-visible output.

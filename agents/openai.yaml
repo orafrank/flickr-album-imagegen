@@ -1,4 +1,4 @@
 interface:
   display_name: "Flickr／Google 相簿批次生圖"
-  short_description: "下載 Flickr 或 Google 相簿照片並依 Prompt 批次生成獨立圖片"
-  default_prompt: "請提供 Flickr 相簿或 Google Photos 分享網址、照片範圍與影像風格 Prompt。"
+  short_description: "批次生成相簿圖片，確認後可選擇發布到 Flickr 或 Google"
+  default_prompt: "請使用 $flickr-album-imagegen 處理相簿照片；生成後先留在本機，若要上傳請先顯示目的相簿與隱私設定供我確認。"

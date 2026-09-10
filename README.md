@@ -72,6 +72,18 @@ Paste a public Flickr album URL; `/page2` and `/with/{photo-id}` URLs are suppor
 
 You can replace the sample art direction with any prompt you like. The skill keeps the requested album order and processes each source image independently.
 
+## Optional publishing
+
+Generated files stay local by default. After a batch is complete, you may choose:
+
+- **Local only** — no external upload.
+- **Flickr** — upload to a verified existing album owned by the authenticated account, with explicit public/friends/family/private and search-visibility settings.
+- **Google Photos** — upload to an album created by this integration.
+
+Every upload uses a two-step safety flow. First, the skill creates a read-only upload plan showing the provider, account, exact album name and ID, ordered filenames, and privacy/sharing state. It uploads only after you confirm that plan's unique confirmation code. Changed or missing files invalidate the plan.
+
+Google Photos API note: since March 31, 2025, API uploads can be added only to albums created by the same integration. Arbitrary existing or shared albums cannot be selected, and album sharing must be managed in Google Photos.
+
 ## Notes
 
 - Each source photo is generated and saved independently.
@@ -189,6 +201,18 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 ![Flickr 生成範例：橡膠印章旅行日記海報](examples/flickr-rubber-stamp.png)
 
 範例中的美術風格可以替換成任何自訂提示詞。Skill 會維持指定的相簿順序，並逐張處理來源照片。
+
+## 選擇性上傳
+
+生成完成後預設只保留在本機。你可以另外選擇：
+
+- **不上傳**：不對外部服務進行任何寫入。
+- **Flickr**：上傳到已確認、且屬於登入帳號的既有相簿；上傳前明確顯示公開、朋友、家人、私人以及搜尋可見性。
+- **Google 相簿**：上傳到由本整合建立的相簿。
+
+每批上傳都分成兩步。Skill 會先產生不會上傳檔案的預覽計畫，列出平台、帳號、相簿名稱與 ID、依序排列的檔名，以及隱私／分享狀態。只有在你確認該計畫的唯一確認碼後才會執行；檔案若被修改或遺失，計畫會立即失效。
+
+Google 相簿 API 自 2025 年 3 月 31 日起，只允許把 API 上傳的照片加入由同一個整合建立的相簿，不能指定任意既有或共享相簿；分享狀態仍須在 Google 相簿中手動管理。
 
 ## 注意事項
 
