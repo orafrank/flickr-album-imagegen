@@ -46,10 +46,30 @@ def image_files(directory: Path) -> list[Path]:
                   if path.is_file() and path.suffix.lower() in IMAGE_TYPES)
 
 
+def load_descriptions(path: Path, files: list[Path]) -> dict[str, str]:
+    data = json.loads(path.read_text())
+    if not isinstance(data, dict):
+        raise SystemExit("Description manifest must be a JSON object keyed by output filename")
+    names = {item.name for item in files}
+    if set(data) != names:
+        missing = sorted(names - set(data))
+        extra = sorted(set(data) - names)
+        raise SystemExit(f"Description manifest does not match images; missing={missing}, extra={extra}")
+    for name, description in data.items():
+        if not isinstance(description, str) or not description.strip():
+            raise SystemExit(f"Missing style prompt for {name}")
+    return data
+
+
 def build_plan(args: argparse.Namespace) -> dict:
     files = image_files(args.input)
     if not files:
         raise SystemExit(f"No supported images found in {args.input}")
+    descriptions = None
+    if args.provider == "flickr":
+        if not args.descriptions:
+            raise SystemExit("Flickr uploads require --descriptions with each image's actual style prompt")
+        descriptions = load_descriptions(args.descriptions, files)
     target = {"album_id": args.album_id, "album_title": args.album_title}
     if args.provider == "flickr":
         privacy = {
@@ -85,6 +105,7 @@ def build_plan(args: argparse.Namespace) -> dict:
                 "sha256": sha256_file(path),
                 "mime_type": mimetypes.guess_type(path.name)[0]
                 or "application/octet-stream",
+                **({"description": descriptions[path.name]} if descriptions is not None else {}),
             }
             for path in files
         ],
@@ -104,6 +125,11 @@ def show_plan(plan: dict) -> None:
     print(f"Files             : {len(plan['files'])}")
     for index, item in enumerate(plan["files"], 1):
         print(f"  {index:02d}. {item['filename']}  {item['bytes']} bytes")
+        if "description" in item:
+            preview = item["description"].replace("\n", " ")[:160]
+            print(f"      Flickr description: {preview}...")
+    if plan["provider"] == "flickr":
+        print("Full per-photo descriptions are stored in this confirmation-bound plan.")
     print()
     print("To upload this exact batch, run:")
     print(f"  publish_batch.py upload --plan <plan.json> --confirm {plan['plan_id']}")
@@ -173,6 +199,7 @@ def upload_flickr(plan: dict) -> None:
     for item in plan["files"]:
         fields = {
             "title": Path(item["filename"]).stem,
+            "description": item["description"],
             "is_public": int(privacy["public"]),
             "is_friend": int(privacy["friends"]),
             "is_family": int(privacy["family"]),
@@ -282,6 +309,8 @@ def main() -> int:
     prepare.add_argument("--family", type=int, choices=[0, 1], default=0)
     prepare.add_argument("--hidden", action="store_true")
     prepare.add_argument("--google-album-created-by-app", action="store_true")
+    prepare.add_argument("--descriptions", type=Path,
+                         help="JSON object mapping every Flickr output filename to its actual style prompt")
     upload = sub.add_parser("upload")
     upload.add_argument("--plan", type=Path, required=True)
     upload.add_argument("--confirm", required=True)

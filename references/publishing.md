@@ -21,6 +21,7 @@ upload, show the user:
 - provider and authenticated account label;
 - exact target album title and opaque ID;
 - number and ordered filenames;
+- for Flickr, a preview of each photo's description and the plan path containing its full prompt;
 - Flickr privacy flags and search visibility; or
 - for Google Photos, that the album is app-created and sharing is not controlled
   by the API.
@@ -39,7 +40,13 @@ Required environment variables:
 - `FLICKR_OAUTH_TOKEN_SECRET`
 
 The OAuth token must grant `write` permission. The script uploads each file,
-then appends its returned photo ID to the selected photoset. Default every photo
+setting Flickr's photo `description` to that output's actual image-generation style
+prompt, then appends its returned photo ID to the selected photoset. Supply a JSON
+description manifest keyed by exact output filename; include the full preset or
+custom prompt plus photo-specific clause used for that image. Do not infer prompts
+from style names in filenames or silently leave a description empty. The prepare
+step rejects missing or extra entries, and the confirmation code binds the full
+descriptions. Default every photo
 to private unless the user explicitly chooses broader visibility. Never print
 credentials or place them in a plan, repository, command argument, or log.
 
@@ -50,6 +57,7 @@ python3 scripts/publish_batch.py prepare \
   --provider flickr --input '<output-directory>' \
   --account '<account-label>' \
   --album-id '<photoset-id>' --album-title '<verified-title>' \
+  --descriptions '<batch-directory>/descriptions.json' \
   --public 0 --friends 0 --family 0 --hidden \
   --plan '<batch-directory>/flickr-upload-plan.json'
 ```
