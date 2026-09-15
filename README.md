@@ -16,7 +16,7 @@ Restart Codex, then ask it to use `flickr-album-imagegen` with:
 - a page or photo range;
 - an image transformation prompt.
 
-You may also omit the long prompt and select a built-in preset: `editorial-handdrawn`, `capsule-figurine`, `riso-editorial`, `rubber-stamp-journal`, `pastel-crayon`, `korean-pink-editorial`, `landmark-blueprint`, or `japanese-editorial-memory`. Without a prompt, the default is `editorial-handdrawn`.
+You may also omit the long prompt and select a built-in preset from the complete list below. Without a prompt, the default is `editorial-handdrawn`.
 
 ## Built-in style presets
 
@@ -32,12 +32,15 @@ Replace `<album-url>` with a public Flickr album or Google Photos share link.
 | `korean-pink-editorial` | 16:9 pink Korean-idol fashion magazine collage | `Use flickr-album-imagegen with <album-url>. Process the first 3 portraits with korean-pink-editorial.` |
 | `landmark-blueprint` | Real landmark photograph with architectural blueprint annotations | `Use flickr-album-imagegen with <album-url>. Process the first 5 architecture photos with landmark-blueprint.` |
 | `japanese-editorial-memory` | 3:4 contemporary Japanese art-book poster with a poetic handwritten memory phrase | `Use flickr-album-imagegen with <album-url>. Process the first 10 photos with japanese-editorial-memory.` |
+| `bold-marker-portrait` | Saturated acrylic-marker portrait or scene with identity preservation and a warm handwritten aside | `Use flickr-album-imagegen with <album-url>. Process every 8th photo with bold-marker-portrait.` |
+| `japanese-light-photo` | Natural, softly graded Japanese editorial photograph; no collage or illustration | `Use flickr-album-imagegen with <album-url>. Process every 5th photo with japanese-light-photo.` |
+| `torn-fissure-collage` | 3:4 top photo and bottom central torn-paper geometric collage | `Use flickr-album-imagegen with <album-url>. Process photos 1–10 with torn-fissure-collage.` |
 
 Extra directions can be appended to any preset, for example: `Use rubber-stamp-journal, but omit all typography and use brighter ivory paper.` A fully custom prompt is still supported.
 
 ### Style gallery
 
-Each image below is an actual single-photo output from its named preset.
+The first nine gallery images are single-photo outputs; the two newly added styles use fictional, non-identifiable demonstrations so private shared-album photos are not published in this public repository.
 
 | Style | Example | Style | Example |
 |---|---|---|---|
@@ -45,6 +48,8 @@ Each image below is an actual single-photo output from its named preset.
 | `riso-editorial`<br>RISO editorial print | <img src="examples/styles/riso-editorial.jpg" alt="riso-editorial example" width="300"> | `rubber-stamp-journal`<br>Rubber-stamp travel journal | <img src="examples/styles/rubber-stamp-journal.jpg" alt="rubber-stamp-journal example" width="300"> |
 | `pastel-crayon`<br>Pastel crayon poster | <img src="examples/styles/pastel-crayon.jpg" alt="pastel-crayon example" width="300"> | `korean-pink-editorial`<br>Pink Korean editorial collage | <img src="examples/styles/korean-pink-editorial.jpg" alt="korean-pink-editorial example" width="300"> |
 | `landmark-blueprint`<br>Architectural field blueprint | <img src="examples/styles/landmark-blueprint.jpg" alt="landmark-blueprint example" width="300"> | `japanese-editorial-memory`<br>Japanese editorial memory poster | <img src="examples/styles/japanese-editorial-memory.jpg" alt="japanese-editorial-memory example" width="300"> |
+| `bold-marker-portrait`<br>Bold acrylic-marker portrait | <img src="examples/styles/bold-marker-portrait.jpg" alt="bold-marker-portrait example" width="300"> |  |  |
+| `japanese-light-photo`<br>Natural Japanese light photograph | <img src="examples/styles/japanese-light-photo.jpg" alt="japanese-light-photo example" width="300"> | `torn-fissure-collage`<br>Photo + central torn-paper fissure | <img src="examples/styles/torn-fissure-collage.jpg" alt="torn-fissure-collage fictional demo" width="300"> |
 
 ### Japanese Editorial Memory Poster prompt example
 
@@ -127,6 +132,9 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 | `korean-pink-editorial` | 粉紅韓系、韓系粉紅雜誌 |
 | `landmark-blueprint` | 知名建築物分析、建築藍圖 |
 | `japanese-editorial-memory` | 日系輕編輯．情緒記憶海報、日系情緒海報 |
+| `bold-marker-portrait` | 濃色馬克筆人物畫、當代藝術馬克筆、寬頭馬克筆 |
+| `japanese-light-photo` | 日式輕寫真、日系輕寫真、日系輕編輯照片 |
+| `torn-fissure-collage` | 中央撕紙裂縫拼貼、上下對照撕紙海報、撕紙揭景 |
 
 ### 每種風格的複製範例
 
@@ -179,6 +187,26 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `japanese-editorial-memory`（日系輕編輯．情緒記憶海報）。每張照片獨立輸出，依照片情緒自動生成一句簡短日文；不要虛構地點或日期。
 
 ![日系輕編輯．情緒記憶海報範例](examples/styles/japanese-editorial-memory.jpg)
+
+#### 9. 濃色馬克筆人物畫
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 中序號為 8 的倍數的照片，套用 `bold-marker-portrait`（濃色馬克筆人物畫）。保留人物身份、神態與動作，以四至六種濃色寬頭壓克力馬克筆重新繪製，並加入一句溫暖、輕微荒誕的手寫旁注。沒有清晰人物時不要虛構人物，改以原照的主要物件或場景為主角。每張照片獨立輸出。
+
+![濃色馬克筆人物畫範例](examples/styles/bold-marker-portrait.jpg)
+
+#### 10. 日式輕寫真
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 中序號為 5 的倍數的照片，套用 `japanese-light-photo`（日式輕寫真）。保留原照人物、姿勢、場景和真實光線，只做克制的日系編輯調色；每張照片獨立輸出。
+
+![日式輕寫真虛構場景示意圖](examples/styles/japanese-light-photo.jpg)
+
+#### 11. 上下對照／中央撕紙裂縫拼貼
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `torn-fissure-collage`（中央撕紙裂縫拼貼）。上半部忠實保留照片，下半部以大量留白、中央裂縫和少量幾何色塊重構主題；每張照片獨立輸出。
+
+![中央撕紙裂縫拼貼示意圖：虛構場景，非私人相簿照片](examples/styles/torn-fissure-collage.jpg)
+
+新增兩種風格的說明圖都是虛構場景示意，避免將分享連結中的私人照片公開到 GitHub。
 
 如果完全沒有指定 prompt 或預設風格，會自動使用 `editorial-handdrawn`。你也可以在預設風格後面追加要求，例如「不要文字」或「背景改成奶油白」。
 
