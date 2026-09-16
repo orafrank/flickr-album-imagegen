@@ -35,6 +35,7 @@ Replace `<album-url>` with a public Flickr album or Google Photos share link.
 | `bold-marker-portrait` | Saturated acrylic-marker portrait or scene with identity preservation and a warm handwritten aside | `Use flickr-album-imagegen with <album-url>. Process every 8th photo with bold-marker-portrait.` |
 | `japanese-light-photo` | Natural, softly graded Japanese editorial photograph; no collage or illustration | `Use flickr-album-imagegen with <album-url>. Process every 5th photo with japanese-light-photo.` |
 | `torn-fissure-collage` | 3:4 top photo and bottom central torn-paper geometric collage | `Use flickr-album-imagegen with <album-url>. Process photos 1–10 with torn-fissure-collage.` |
+| `impasto-micro-landscape` | 4:5 sculptural palette-knife oil micro-landscape on warm-white paper | `Use flickr-album-imagegen with <album-url>. Process every 9th photo with impasto-micro-landscape.` |
 
 Extra directions can be appended to any preset, for example: `Use rubber-stamp-journal, but omit all typography and use brighter ivory paper.` A fully custom prompt is still supported.
 
@@ -50,6 +51,7 @@ The first nine gallery images are single-photo outputs; the two newly added styl
 | `landmark-blueprint`<br>Architectural field blueprint | <img src="examples/styles/landmark-blueprint.jpg" alt="landmark-blueprint example" width="300"> | `japanese-editorial-memory`<br>Japanese editorial memory poster | <img src="examples/styles/japanese-editorial-memory.jpg" alt="japanese-editorial-memory example" width="300"> |
 | `bold-marker-portrait`<br>Bold acrylic-marker portrait | <img src="examples/styles/bold-marker-portrait.jpg" alt="bold-marker-portrait example" width="300"> |  |  |
 | `japanese-light-photo`<br>Natural Japanese light photograph | <img src="examples/styles/japanese-light-photo.jpg" alt="japanese-light-photo example" width="300"> | `torn-fissure-collage`<br>Photo + central torn-paper fissure | <img src="examples/styles/torn-fissure-collage.jpg" alt="torn-fissure-collage fictional demo" width="300"> |
+| `impasto-micro-landscape`<br>Thick oil-paint micro-landscape | <img src="examples/styles/impasto-micro-landscape.png" alt="impasto-micro-landscape example" width="300"> |  |  |
 
 ### Japanese Editorial Memory Poster prompt example
 
@@ -135,6 +137,7 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 | `bold-marker-portrait` | 濃色馬克筆人物畫、當代藝術馬克筆、寬頭馬克筆 |
 | `japanese-light-photo` | 日式輕寫真、日系輕寫真、日系輕編輯照片 |
 | `torn-fissure-collage` | 中央撕紙裂縫拼貼、上下對照撕紙海報、撕紙揭景 |
+| `impasto-micro-landscape` | 厚塗油畫微景觀、厚塗微景觀、油畫微景觀 |
 
 ### 每種風格的複製範例
 
@@ -205,6 +208,12 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `torn-fissure-collage`（中央撕紙裂縫拼貼）。上半部忠實保留照片，下半部以大量留白、中央裂縫和少量幾何色塊重構主題；每張照片獨立輸出。
 
 ![中央撕紙裂縫拼貼示意圖：虛構場景，非私人相簿照片](examples/styles/torn-fissure-collage.jpg)
+
+#### 12. 厚塗油畫微景觀
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 中序號為 9 的倍數的照片，套用 `impasto-micro-landscape`（厚塗油畫微景觀）。以照片中的主要人物、動物、物件或景觀結構為唯一主角，重構成 4:5 直式、厚重刮刀油彩與大量暖白紙張留白的微型景觀海報；只使用簡短英文標題，不加入數字或非拉丁字元。每張照片獨立輸出。
+
+![厚塗油畫微景觀範例](examples/styles/impasto-micro-landscape.png)
 
 新增兩種風格的說明圖都是虛構場景示意，避免將分享連結中的私人照片公開到 GitHub。
 
