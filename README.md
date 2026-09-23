@@ -36,12 +36,16 @@ Replace `<album-url>` with a public Flickr album or Google Photos share link.
 | `japanese-light-photo` | Natural, softly graded Japanese editorial photograph; no collage or illustration | `Use flickr-album-imagegen with <album-url>. Process every 5th photo with japanese-light-photo.` |
 | `torn-fissure-collage` | 3:4 top photo and bottom central torn-paper geometric collage | `Use flickr-album-imagegen with <album-url>. Process photos 1–10 with torn-fissure-collage.` |
 | `impasto-micro-landscape` | 4:5 sculptural palette-knife oil micro-landscape on warm-white paper | `Use flickr-album-imagegen with <album-url>. Process every 9th photo with impasto-micro-landscape.` |
+| `editorial-object-companion` | 3:4 high-end top-bottom editorial poster with one restrained anthropomorphic object companion | `Use flickr-album-imagegen with <album-url>. Process the remaining photos with editorial-object-companion.` |
+| `typographic-illustration-poster` | 3:4 top photo and bottom experimental typography-as-image reconstruction | `Use flickr-album-imagegen with <album-url>. Process photos 1–10 with typographic-illustration-poster.` |
+| `minimal-vector-travel-poster` | 3:4 top photo and bottom premium minimalist flat-vector travel poster | `Use flickr-album-imagegen with <album-url>. Process photos 1–10 with minimal-vector-travel-poster.` |
+| `fashion-sketch-portrait` | 4:5 identity-preserving colored-pencil and watercolor fashion portrait with a small source-photo comparison | `Use flickr-album-imagegen with <album-url>. Process all photos with fashion-sketch-portrait.` |
 
 Extra directions can be appended to any preset, for example: `Use rubber-stamp-journal, but omit all typography and use brighter ivory paper.` A fully custom prompt is still supported.
 
 ### Style gallery
 
-The first nine gallery images are single-photo outputs; the two newly added styles use fictional, non-identifiable demonstrations so private shared-album photos are not published in this public repository.
+Some gallery images use fictional, non-identifiable demonstrations so private shared-album photos are not published in this public repository.
 
 | Style | Example | Style | Example |
 |---|---|---|---|
@@ -51,7 +55,16 @@ The first nine gallery images are single-photo outputs; the two newly added styl
 | `landmark-blueprint`<br>Architectural field blueprint | <img src="examples/styles/landmark-blueprint.jpg" alt="landmark-blueprint example" width="300"> | `japanese-editorial-memory`<br>Japanese editorial memory poster | <img src="examples/styles/japanese-editorial-memory.jpg" alt="japanese-editorial-memory example" width="300"> |
 | `bold-marker-portrait`<br>Bold acrylic-marker portrait | <img src="examples/styles/bold-marker-portrait.jpg" alt="bold-marker-portrait example" width="300"> |  |  |
 | `japanese-light-photo`<br>Natural Japanese light photograph | <img src="examples/styles/japanese-light-photo.jpg" alt="japanese-light-photo example" width="300"> | `torn-fissure-collage`<br>Photo + central torn-paper fissure | <img src="examples/styles/torn-fissure-collage.jpg" alt="torn-fissure-collage fictional demo" width="300"> |
-| `impasto-micro-landscape`<br>Thick oil-paint micro-landscape | <img src="examples/styles/impasto-micro-landscape.png" alt="impasto-micro-landscape example" width="300"> |  |  |
+| `impasto-micro-landscape`<br>Thick oil-paint micro-landscape | <img src="examples/styles/impasto-micro-landscape.png" alt="impasto-micro-landscape example" width="300"> | `editorial-object-companion`<br>Top-bottom editorial object companion | <img src="examples/styles/editorial-object-companion.png" alt="editorial-object-companion fictional demo" width="300"> |
+| `typographic-illustration-poster`<br>Typography-as-image editorial poster | Example image pending |  |  |
+| `minimal-vector-travel-poster`<br>Minimal flat-vector travel poster | Example image pending |  |  |
+| `fashion-sketch-portrait`<br>Premium semi-realistic fashion sketch | <img src="examples/styles/fashion-sketch-portrait.png" alt="fashion-sketch-portrait fictional demo" width="300"> |  |  |
+
+### Fashion Sketch Portrait prompt example
+
+> Use `flickr-album-imagegen` with `<album-url>`. Process all photos with `fashion-sketch-portrait`. Preserve each person's identity, pose, clothing, accessories, and props; use a 4:5 white-paper colored-pencil and light-watercolor fashion sketch, and place a small uncropped source-photo comparison in the blank margin.
+
+![Fashion Sketch Portrait fictional example](examples/styles/fashion-sketch-portrait.png)
 
 ### Japanese Editorial Memory Poster prompt example
 
@@ -138,6 +151,10 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 | `japanese-light-photo` | 日式輕寫真、日系輕寫真、日系輕編輯照片 |
 | `torn-fissure-collage` | 中央撕紙裂縫拼貼、上下對照撕紙海報、撕紙揭景 |
 | `impasto-micro-landscape` | 厚塗油畫微景觀、厚塗微景觀、油畫微景觀 |
+| `editorial-object-companion` | 高級編輯物件陪伴海報、上下雙區物件擬人海報、物件陪伴海報 |
+| `typographic-illustration-poster` | 文字即圖像海報、字體插畫海報、實驗字體設計、文字構成海報 |
+| `minimal-vector-travel-poster` | 極簡旅行海報、高級旅行海報、精品生活方式明信片、扁平矢量旅行海報 |
+| `fashion-sketch-portrait` | 高級時尚手繪、照片轉高級時尚手繪、半寫實時尚手繪肖像 |
 
 ### 每種風格的複製範例
 
@@ -215,7 +232,31 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 
 ![厚塗油畫微景觀範例](examples/styles/impasto-micro-landscape.png)
 
-新增兩種風格的說明圖都是虛構場景示意，避免將分享連結中的私人照片公開到 GitHub。
+#### 13. 高級編輯物件陪伴海報
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 中剩下的照片，套用 `editorial-object-companion`（高級編輯物件陪伴海報）。以 3:4 直式上下雙區呈現：上半部忠實保留原始照片，下半部使用高保真攝影抠圖與低飽和留白版面；從原照挑選一個真實物件，做成唯一、克制、帶冷幽默的擬人化小角色，並加入主標題、`zhanglang01` 與一句英文編輯註解。不要把人物卡通化，也不要加入多個吉祥物、貼紙、品牌標誌或浮誇裝飾。每張照片獨立輸出。
+
+![高級編輯物件陪伴海報示意圖：虛構人物，非私人相簿照片](examples/styles/editorial-object-companion.png)
+
+#### 14. 文字即圖像／字體插畫海報
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `typographic-illustration-poster`（文字即圖像海報）。每張照片獨立輸出成 3:4 直式上下 1:1 藝術雜誌海報：上半部忠實保留原始照片，下半部以照片中的主體、輪廓、姿態、空間走勢與代表性色彩為依據，用文字本身構成點、線、面、體塊與細節，而不是先畫插畫再覆蓋文字。文字內容可依主體、場景、動作與情緒自動生成中英文短詞，但必須與被構成的對象相關，並保留一眼可辨識的主體對應關係。
+
+此風格的範例圖尚待產生；產生公開示意圖時，請使用虛構或可公開照片，避免把私人分享相簿照片提交到 GitHub。
+
+#### 15. 高級半寫實時尚手繪肖像
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的全部照片，套用 `fashion-sketch-portrait`（高級時尚手繪）。每張照片獨立輸出為 4:5 直式白紙時尚手稿，保留人物真實身份、五官、神態、髮型、服裝、飾品與道具，並把原始照片縮小放在留白處作對比。
+
+![高級半寫實時尚手繪肖像虛構示意圖](examples/styles/fashion-sketch-portrait.png)
+
+#### 16. 高級極簡扁平矢量旅行海報
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `minimal-vector-travel-poster`（極簡旅行海報）。每張照片獨立輸出成 3:4 直式上下 1:1 高級設計海報：上半部忠實保留原始照片，下半部從原圖提煉主體、輪廓、姿態與場景氣質，重構為 premium minimalist flat-vector travel poster。根據每張照片客製一個主視覺焦點，並加入 2–4 個能表現地方感、日常方式、環境氣質或生活狀態的輔助元素；整體使用清新柔和的藍、象牙白、奶油白、淺米色、柔和灰綠與少量 dusty rose，呈現高級旅行海報／精品生活方式明信片感。避免模板感、重複構圖、地標堆積、明信片羅列與過度敘事。
+
+此風格的範例圖尚待產生；產生公開示意圖時，請使用虛構或可公開照片，避免把私人分享相簿照片提交到 GitHub。
+
+新增風格的說明圖都是虛構場景示意，避免將分享連結中的私人照片公開到 GitHub。
 
 如果完全沒有指定 prompt 或預設風格，會自動使用 `editorial-handdrawn`。你也可以在預設風格後面追加要求，例如「不要文字」或「背景改成奶油白」。
 

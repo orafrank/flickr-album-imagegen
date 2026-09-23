@@ -10,10 +10,12 @@ import json
 import re
 import sys
 import urllib.request
+import urllib.parse
 from pathlib import Path
 
 TOKEN_RE = re.compile(r'"(?:title|id)":"[^"]*"')
 STATIC_RE = re.compile(r'https://live\.staticflickr\.com/[^" ]+?\.jpg')
+SITE_KEY_RE = re.compile(r'YUI_config\.flickr\.api\.site_key\s*=\s*"([^"]+)"')
 
 
 def fetch_text(opener: urllib.request.OpenerDirector, url: str) -> tuple[str, str]:
@@ -56,6 +58,47 @@ def ordered_photos(page_html: str, album_id: str) -> list[tuple[str, str]]:
     return photos
 
 
+def api_photos(opener: urllib.request.OpenerDirector, page_html: str,
+               album_id: str, owner: str) -> list[dict[str, str]]:
+    """Return the complete ordered public photoset via Flickr's read-only API."""
+    key_match = SITE_KEY_RE.search(page_html)
+    if not key_match:
+        return []
+    params = {
+        "method": "flickr.photosets.getPhotos",
+        "api_key": key_match.group(1),
+        "photoset_id": album_id,
+        "per_page": "500",
+        "page": "1",
+        "format": "json",
+        "nojsoncallback": "1",
+        "extras": "url_o,url_k,url_h,url_b,url_c",
+    }
+    photos: list[dict[str, str]] = []
+    while True:
+        url = "https://www.flickr.com/services/rest/?" + urllib.parse.urlencode(params)
+        body, _ = fetch_text(opener, url)
+        payload = json.loads(body)
+        photoset = payload.get("photoset") or {}
+        photos.extend(photoset.get("photo") or [])
+        page = int(photoset.get("page", params["page"]))
+        pages = int(photoset.get("pages", page))
+        if page >= pages:
+            break
+        params["page"] = str(page + 1)
+    return photos
+
+
+def api_image_url(photo: dict[str, str]) -> str | None:
+    # 2048px is ample for generation while avoiding multi-megabyte originals
+    # across large albums. Fall back to the original only when needed.
+    for size in ("k", "h", "o", "b", "c"):
+        url = photo.get(f"url_{size}")
+        if url:
+            return url
+    return None
+
+
 def safe_title(value: str) -> str:
     value = html.unescape(value).strip() or "photo"
     value = re.sub(r"[\/:*?\"<>|\x00-\x1f]", "_", value)
@@ -81,7 +124,12 @@ def main() -> int:
         parser.error("URL did not resolve to a Flickr album or Guest Pass album")
     album_id = album_match.group(1)
     owner = owner_match.group(1)
-    photos = ordered_photos(album_html, album_id)
+    complete_photos = api_photos(opener, album_html, album_id, owner)
+    if complete_photos:
+        photos = [(str(photo["id"]), str(photo.get("title") or "photo"))
+                  for photo in complete_photos]
+    else:
+        photos = ordered_photos(album_html, album_id)
     selected = photos[args.start - 1 : args.start - 1 + args.count]
     if not selected:
         print("No photos found in requested range", file=sys.stderr)
@@ -93,8 +141,11 @@ def main() -> int:
     for offset, (photo_id, title) in enumerate(selected):
         sequence = args.start + offset
         photo_page = f"https://www.flickr.com/photos/{owner}/{photo_id}/in/album-{album_id}"
-        photo_html, _ = fetch_text(opener, photo_page)
-        image_url = best_image_url(photo_html, photo_id)
+        api_photo = complete_photos[sequence - 1] if complete_photos else None
+        image_url = api_image_url(api_photo) if api_photo else None
+        if not image_url:
+            photo_html, _ = fetch_text(opener, photo_page)
+            image_url = best_image_url(photo_html, photo_id)
         if not image_url:
             raise RuntimeError(f"No downloadable image found for Flickr photo {photo_id}")
         filename = f"{sequence:0{width}d}_{safe_title(title)}.jpg"
@@ -110,7 +161,7 @@ def main() -> int:
     manifest_path.write_text(json.dumps({"album_url": resolved_url, "source_url": args.url,
         "guest_pass": "/gp/" in args.url, "album_id": album_id,
         "requested_start": args.start, "requested_count": args.count,
-        "actual_count": len(manifest), "photos": manifest},
+        "album_total": len(photos), "actual_count": len(manifest), "photos": manifest},
         ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(manifest_path)
     return 0
