@@ -40,6 +40,8 @@ Replace `<album-url>` with a public Flickr album or Google Photos share link.
 | `typographic-illustration-poster` | 3:4 top photo and bottom experimental typography-as-image reconstruction | `Use flickr-album-imagegen with <album-url>. Process photos 1–10 with typographic-illustration-poster.` |
 | `minimal-vector-travel-poster` | 3:4 top photo and bottom premium minimalist flat-vector travel poster | `Use flickr-album-imagegen with <album-url>. Process photos 1–10 with minimal-vector-travel-poster.` |
 | `fashion-sketch-portrait` | 4:5 identity-preserving colored-pencil and watercolor fashion portrait with a small source-photo comparison | `Use flickr-album-imagegen with <album-url>. Process all photos with fashion-sketch-portrait.` |
+| `japanese-fashion-manga-poster` | 3:4 Japanese fashion manga print with light ink, warm-red `WIBI` and gray-blue `STYLE` lettering | `Use flickr-album-imagegen with <album-url>. Process all photos with japanese-fashion-manga-poster.` |
+| `monochrome-fitness-studio` | High-contrast black-and-white fitness studio portrait with a seamless grey Limbo background | `Use flickr-album-imagegen with <album-url>. Process the first 10 portraits with monochrome-fitness-studio.` |
 
 Extra directions can be appended to any preset, for example: `Use rubber-stamp-journal, but omit all typography and use brighter ivory paper.` A fully custom prompt is still supported.
 
@@ -59,6 +61,8 @@ Some gallery images use fictional, non-identifiable demonstrations so private sh
 | `typographic-illustration-poster`<br>Typography-as-image editorial poster | Example image pending |  |  |
 | `minimal-vector-travel-poster`<br>Minimal flat-vector travel poster | Example image pending |  |  |
 | `fashion-sketch-portrait`<br>Premium semi-realistic fashion sketch | <img src="examples/styles/fashion-sketch-portrait.png" alt="fashion-sketch-portrait fictional demo" width="300"> |  |  |
+| `japanese-fashion-manga-poster`<br>Light-ink fashion manga editorial | Example image pending |  |  |
+| `monochrome-fitness-studio`<br>Black-and-white fitness studio portrait | Example image pending |  |  |
 
 ### Fashion Sketch Portrait prompt example
 
@@ -155,6 +159,8 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 | `typographic-illustration-poster` | 文字即圖像海報、字體插畫海報、實驗字體設計、文字構成海報 |
 | `minimal-vector-travel-poster` | 極簡旅行海報、高級旅行海報、精品生活方式明信片、扁平矢量旅行海報 |
 | `fashion-sketch-portrait` | 高級時尚手繪、照片轉高級時尚手繪、半寫實時尚手繪肖像 |
+| `japanese-fashion-manga-poster` | 日式手繪時裝漫畫海報、日系時裝漫畫、WIBI STYLE |
+| `monochrome-fitness-studio` | 黑白健身棚拍、高反差黑白棚拍、灰色 Limbo 棚拍 |
 
 ### 每種風格的複製範例
 
@@ -255,6 +261,12 @@ git clone https://github.com/orafrank/flickr-album-imagegen.git ~/.codex/skills/
 > 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張，套用 `minimal-vector-travel-poster`（極簡旅行海報）。每張照片獨立輸出成 3:4 直式上下 1:1 高級設計海報：上半部忠實保留原始照片，下半部從原圖提煉主體、輪廓、姿態與場景氣質，重構為 premium minimalist flat-vector travel poster。根據每張照片客製一個主視覺焦點，並加入 2–4 個能表現地方感、日常方式、環境氣質或生活狀態的輔助元素；整體使用清新柔和的藍、象牙白、奶油白、淺米色、柔和灰綠與少量 dusty rose，呈現高級旅行海報／精品生活方式明信片感。避免模板感、重複構圖、地標堆積、明信片羅列與過度敘事。
 
 此風格的範例圖尚待產生；產生公開示意圖時，請使用虛構或可公開照片，避免把私人分享相簿照片提交到 GitHub。
+
+#### 17. 黑白健身棚拍
+
+> 請使用 `flickr-album-imagegen` 處理 `<相簿網址>` 的前十張人物照片，套用 `monochrome-fitness-studio`（黑白健身棚拍）。保留每位人物的身份、原本姿勢、身形、服裝與畫面比例；以高反差黑白棚燈強化原照可見的肌肉線條，並將雜亂背景換成簡潔的灰色 Limbo 無縫棚景。每張照片獨立輸出，不憑空改造身體。
+
+此風格尚無公開範例圖；請勿把私人相簿原照當成 README 示意圖。
 
 新增風格的說明圖都是虛構場景示意，避免將分享連結中的私人照片公開到 GitHub。
 

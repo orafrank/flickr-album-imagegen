@@ -43,7 +43,7 @@ The OAuth token must grant `write` permission. The script uploads each file,
 setting Flickr's photo `description` to that output's actual image-generation style
 prompt, then appends its returned photo ID to the selected photoset. Supply a JSON
 description manifest keyed by exact output filename; include the full preset or
-custom prompt plus photo-specific clause used for that image. Do not infer prompts
+custom prompt plus photo-specific clause used for that image. Prefix every description with a provenance block containing the original source photo page URL, album sequence number, and Flickr photo ID, labeled `來源照片` or `Source photo`. Do not infer prompts
 from style names in filenames or silently leave a description empty. The prepare
 step rejects missing or extra entries, and the confirmation code binds the full
 descriptions. Default every photo
