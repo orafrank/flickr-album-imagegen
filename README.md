@@ -42,6 +42,7 @@ Replace `<album-url>` with a public Flickr album or Google Photos share link.
 | `fashion-sketch-portrait` | 4:5 identity-preserving colored-pencil and watercolor fashion portrait with a small source-photo comparison | `Use flickr-album-imagegen with <album-url>. Process all photos with fashion-sketch-portrait.` |
 | `japanese-fashion-manga-poster` | 3:4 Japanese fashion manga print with light ink, warm-red `WIBI` and gray-blue `STYLE` lettering | `Use flickr-album-imagegen with <album-url>. Process all photos with japanese-fashion-manga-poster.` |
 | `monochrome-fitness-studio` | High-contrast black-and-white fitness studio portrait with a seamless grey Limbo background | `Use flickr-album-imagegen with <album-url>. Process the first 10 portraits with monochrome-fitness-studio.` |
+| `deckle-paper-editorial` | 3:4 photo-over-deckle-edge cotton-paper editorial poster with a dimensional subject crossover | `Use flickr-album-imagegen with <album-url>. Process the first 10 photos with deckle-paper-editorial.` |
 
 Extra directions can be appended to any preset, for example: `Use rubber-stamp-journal, but omit all typography and use brighter ivory paper.` A fully custom prompt is still supported.
 
