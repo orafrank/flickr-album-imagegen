@@ -25,6 +25,7 @@ Use a preset when the user names it instead of supplying a full prompt. Preserve
 | `japanese-fashion-manga-poster` | 日式手繪時裝漫畫海報、日系時裝漫畫、WIBI STYLE | 3:4 light-ink fashion manga print with red-and-blue editorial lettering |
 | `manga-alter-ego-photo` | 真人漫畫分身、漫畫分身合照、真人遇見漫畫分身 | Photoreal person on the left with a hand-drawn manga alter ego on the right |
 | `monochrome-fitness-studio` | 黑白健身棚拍、高反差黑白棚拍、灰色 Limbo 棚拍 | Identity-preserving black-and-white fitness portrait with dramatic studio lighting |
+| `deckle-paper-editorial` | 撕邊棉紙編輯海報、攝影棉紙海報、詩意撕邊海報 | Real photo above, overlapping deckle-edge cotton paper below with a dimensional subject crossover |
 
 ## `editorial-handdrawn`
 
@@ -175,3 +176,15 @@ Convert each referenced person photograph independently into a sharp, cinematic,
 Replace a cluttered setting with a clean, minimal, seamless mid-grey Limbo studio background. Keep realistic perspective, floor contact, silhouette, and occlusion. Use directional studio lighting with strong highlights and deep but detailed shadows to enhance the definition of the back, shoulders, and arms only where those areas are already visible. If clothing covers them, express strength through the existing garment and silhouette instead of revealing or fabricating muscles. Retain photographic skin and fabric texture and the source's aspect ratio unless the user requests a different crop.
 
 The result should feel like premium monochrome fitness editorial photography, not an illustration or a generic body transformation. Avoid extra people or limbs, changed body proportions, plastic skin smoothing, crushed shadow detail, distracting props, text, logos, borders, and watermarks.
+
+## `deckle-paper-editorial`
+
+Use the uploaded image as the subject reference. Create one independent 3:4 vertical editorial poster from the single referenced photograph, with a top-bottom contrast. Preserve the subject's recognizable identity, form, proportions, pose, clothing or material, and defining details. Never combine source photos.
+
+Top: show a realistic photograph of the subject in its natural setting, with soft natural light, shallow depth of field, and gentle bokeh. Retain the source's recognizable environment and keep the main subject sharply detailed.
+
+Bottom: lay off-white textured cotton paper directly over the lower part of the photograph. Give its upper boundary a tactile, irregular torn deckle edge and only a soft contact shadow. The paper must touch and overlap the photograph continuously: no white gap, border, dividing line, or separate framed panel. Let part of the real photographic subject extend naturally across the torn edge onto the paper, casting a soft, believable 3D shadow. Keep this extension connected to the same subject; do not add a second photographic copy or invent unseen anatomy. The dimensional effect comes from layering and shadow, not from turning the subject into a 3D figurine.
+
+On the paper, add a faint grey watercolor silhouette of the same subject as a quiet secondary echo. Include an elegant serif title with the subject's name, a small widely spaced uppercase subtitle, and a few short lines of original poetic italic text. Use a user-provided or verified subject name; if none is known, use a neutral descriptive subject label rather than inventing a person's name, species, or landmark identity. Keep poetic copy evocative rather than factual, respect user-supplied wording, and never print placeholders. Arrange the silhouette and type in generous negative space without obscuring the photographic extension.
+
+Keep the result minimal, quiet, airy, ultra-detailed, and magazine-like, with a muted palette, tactile cotton fibers, delicate watercolor, refined typography, and restrained soft shadows. Avoid clutter, saturated colors, heavy drop shadows, hard panel separators, glossy CGI, extra decorative elements, logos, and watermarks.
